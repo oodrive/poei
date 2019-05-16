@@ -14,7 +14,7 @@ You will need to develop the following HTTP APIs:
 **HTTP Request (input)**
 
 ```
-GET http://localhost:8080/password-manager/password/random?length=8&useChars=true&useDigits=true
+GET http://localhost:8080/password-manager/random?length=8&useChars=true&useDigits=true
 ```
 
 Query parameters:
@@ -36,12 +36,12 @@ Query parameters:
 }
 ```
 
-## Password complexity checker
+## Password score
 
 **HTTP Request (input)**
 
 ```
-POST http://localhost:8080/password-manager/password/verification
+POST http://localhost:8080/password-manager/score
 ```
 
 - Request body:
@@ -59,11 +59,11 @@ POST http://localhost:8080/password-manager/password/verification
 
 ```json
 {
-  "complexity": "LOW"
+  "score": "LOW"
 }
 ```
 
-For simplicity purpose, only 3 levels of complexity will be available:
+For simplicity purpose, only 3 levels will be available:
 
 - `LOW`
 - `MEDIUM`
@@ -90,7 +90,7 @@ Main class: `com.oodrive.poei.passwordmanager.PoeiPasswordManagerApplication`
 The path to call the HTTP API must be the following:
 
 ```
-GET http://localhost:8080/password-manager/password/random
+GET http://localhost:8080/password-manager/random
 ```
 
 The output of the HTTP request must be the following:
@@ -118,7 +118,7 @@ The output of the HTTP request must be the following:
 The path to call the HTTP API must be the following:
 
  ```
-http://localhost:8080/password-manager/password/random?length=12&useChars=true&useDigits=true
+http://localhost:8080/password-manager/random?length=12&useChars=true&useDigits=true
  ```
  
 The output of the HTTP request must be the following:
@@ -136,7 +136,7 @@ The output of the HTTP request must be the following:
   - password character types (letters and / or numbers)
 - Update the controller in order to take into account the parameters provided in the request
  
-## 3 - Password complexity verification
+## 3 - Password score computation
 
 **Goal**
 
@@ -145,7 +145,7 @@ The output of the HTTP request must be the following:
 The path to call the HTTP API must be the following:
 
 ```
-POST http://localhost:8080/password-manager/password/verification
+POST http://localhost:8080/password-manager/score
 
 Request body:
 
@@ -158,17 +158,18 @@ The output of the HTTP request must be the following:
 
 ```json
 {
-  "complexity": "LOW"
+  "score": "LOW"
 }
 ```
 
 **Instructions**
 
-- Create Java classes that score the complexity of a given password
+- Create Java classes that compute the score of a given password
   - for simplicity purpose, the score will be divided in 3 levels: `LOW`, `MEDIUM` and `HIGH`
-  - the computation of a password complexity score will be up to you
-- Update the controller to add a new endpoint that use the complexity computation 
+  - the computation of a password score will be up to you
+- Update the controller to add a new endpoint that use the score computation
   - use the HTTP `POST` verb for this endpoint
+  - :information_source: using HTTP `POST` method is better than HTTP `GET` method in this case as the password is in the request body instead of URL, which means the password in the request will be encrypted when in HTTPS
 
 ## 4 - Save passwords in the database
 
@@ -186,17 +187,17 @@ The output of the HTTP request must be the following:
 - Update the password complexity computation to include the following condition: "Has the password already been used?"
   - the condition can be read as: "Has the given password already been saved in the database?"
 
-## 5 - Hash the password
+## 5 - Password hashing
 
 **Goal**
 
-> For security purpose, the passwords must not be saved in the database as is, i.e. in plain text readable by a human.
+> For security purpose, the passwords must not be saved in plain text readable by a human in the database.
 > 
-> One way is to store the password in the database instead.
+> One way is to store the password's hash in the database instead.
 > 
 > The hashing technique will always result the same output for a given input, in other words, for a given password value,
 > its hash value will always be the same. So, it's also possible to check if a password has already been used or not.
->
+> 
 > The type of the hashes are in byte array, so we will use a mechanism to encode the hash into a printable characters
 > using Base64 base encoding. This will ease the development to manipulate password hashes.
 > Like the hashes, Base64 outputs are also always the same.
@@ -237,5 +238,5 @@ The output of the HTTP request must be the following:
 **Instructions**
 
 - Update your Java classes to use `char[]` instead of `String` for the password value
-- Update your Java classes to overwrite the value of the password values with `*` characters after you're done with it
+- Update your Java classes to overwrite the value of the password values with ` ` characters after you're done with it and assign the password value to `null`
 

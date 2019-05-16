@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /secured-box
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/secured_box?application_name=secured-box
+    username: postgres
