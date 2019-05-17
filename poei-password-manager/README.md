@@ -70,15 +70,15 @@ For simplicity purpose, only 3 levels will be available:
 - `HIGH`
 
 # Getting started
-## Running the service with Maven
-
-```bash
-mvn clean spring-boot:run
-```
-
 ## Running the service with an IDE
 
 Main class: `com.oodrive.poei.passwordmanager.PoeiPasswordManagerApplication`
+
+## Running the service with Maven
+
+```bash
+./mvnw clean spring-boot:run
+```
 
 # Exercises
 ## 1 - Random password generator
@@ -106,7 +106,7 @@ The output of the HTTP request must be the following:
 - Create Java class(es) to generate a random password
   - For the exercise, you will only use alpha numeric characters, no need for special characters
   - You can define arbitrarily the password length
-  - :bulb: You can use the Java class `SecureRandom` to generate a random integer
+  - :bulb: You can use the Java class `java.security.SecureRandom` to generate a random integer
 - Create a controller that uses the Java class(es) to generate a random password
 
 ## 2 - Customizable password generator
@@ -181,7 +181,7 @@ The output of the HTTP request must be the following:
 
 - Modify the `pom.xml` file to use the dependencies `spring-boot-starter-jdbc` and `postgresql`
   - :warning: the application is already configured to use the database `password_manager`, so you may have to create the database beforehand
-- Create a table that will contain the passwords
+- Create a SQL table that will contain the passwords
 - Create the Java DAO class that read and write lines in the database
 - Update the Java classes so that at each verification, the password will be saved in the database
 - Update the password complexity computation to include the following condition: "Has the password already been used?"
@@ -206,7 +206,7 @@ The output of the HTTP request must be the following:
 
 - Create the Java classes that hash a given `String` and return the hashed `String` in Base64 format
   - you will use the algorithm `SHA256` to hash
-  - :bulb: use the standard Java class `Base64` to encode the hashed byte array into a `String`
+  - :bulb: use the standard Java class `java.util.Base64` to encode the hashed byte array into a `String`
 - Update your code to save the password hashes in base64 format instead of plain password
 - Update password complexity computation code to compare the password hashes instead of the password values
 

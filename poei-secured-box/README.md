@@ -95,15 +95,15 @@ If everything went well:
 ```
 
 # Getting started
-## Running the service with Maven
-
-```bash
-mvn clean spring-boot:run
-```
-
 ## Running the service with the IDE
 
 Main class: `com.oodrive.poei.securedbox.PoeiSecuredBoxApplication`
+
+## Running the service with Maven
+
+```bash
+./mvnw clean spring-boot:run
+```
 
 # Exercises
 ## 1 - Secret generation
@@ -194,7 +194,7 @@ The output of the HTTP request must be the following:
 - Update the controller to add a new endpoint to fetch a secret from a key
   - return a HTTP Status `404` if a secret does not exist from a given key
   - return a HTTP Status `403` if the given password is not valid (i.e. not equals to the one provided at the secret creation)
-  - :bulb: you can use the Spring annotation `@ResponseStatus` on an exception to return the corresponding HTTP status
+  - :bulb: you can use the Spring annotation `@org.springframework.web.bind.annotation.ResponseStatus` on an exception to return the corresponding HTTP status
 
 ## 3 - Save secrets in database
 
@@ -208,7 +208,7 @@ The output of the HTTP request must be the following:
 
 - Modify the `pom.xml` file to use the dependencies `spring-boot-starter-jdbc` and `postgresql`
   - :warning: the application is already configured to use the database `secured_box`, so you may have to create the database beforehand
-- Create a table that will contain the secrets
+- Create a SQL table that will contain the secrets
 - Create the Java DAO class that read and write lines in the database
 - Update the Java classes to store, update and fetch the secrets in database instead of in memory
 
@@ -281,7 +281,7 @@ The output of the HTTP request must be the following:
 
 - Update your database & DAO classes to include the salt
 - Create the Java classes to generate a random salt
-  - :bulb: you can use the `new SecureRandom().nextBytes()` to generate random bytes
+  - :bulb: you can use the `new java.security.SecureRandom().nextBytes()` to generate random bytes
 - Update your code to use the salt when encrypting the secret message
 
 ## 7 - Obfuscate password

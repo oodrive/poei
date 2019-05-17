@@ -7,6 +7,7 @@
 You will need to develop the following HTTP APIs:
 
 - API to upload a file
+- API to fetch all file metadata
 - API to download a file
 
 ## File upload
@@ -31,6 +32,29 @@ POST http://localhost:8080/file-storage/file
 }
 ```
 
+## Fetch file metadata
+
+**HTTP Request (input)**
+
+```
+GET http://locahost:8080/file-storage/file
+```
+
+**Expected HTTP Responses (output)**
+
+- HTTP Status: 200
+- Response body (JSON):
+
+```json
+[{
+  "fileId": 1,
+  "name": "poei.pdf"
+}, {
+  "fileId": 2,
+  "name": "foobar.doc"
+}]
+```
+
 ## File download
 
 **HTTP Request (input)**
@@ -51,15 +75,15 @@ Path variable:
 - File download
 
 # Getting started
-## Running the service with Maven
-
-```bash
-mvn clean spring-boot:run
-```
-
 ## Running the service with the IDE
 
 Main class: `com.oodrive.poei.filestorage.PoeiFileStorageApplication`
+
+## Running the service with Maven
+
+```bash
+./mvnw clean spring-boot:run
+```
 
 # Exercises
 ## 1 - File upload
@@ -91,14 +115,46 @@ The output of the HTTP request must be the following:
 **Instructions**
 
 - Create Java classes:
-  - to represents a file entity without its content (id, file name, absolute path to the stored file)
-  - to store the file entities in memory
+  - to represents a file metadata without its content (id, file name, absolute path to the stored file)
+  - to store the file metadata in memory
   - to store a file in file system
-    - :bulb: you can use the `Files.createTempFile()` API to create the files in a temporary directory
+    - :bulb: you can use the `java.nio.file.Files.createTempFile()` API to create the files in a temporary directory
     - :bulb: track the file absolute path so you can fetch them again when we will download them
 - Create a controller that uses the previous Java classes
 
-## 2 - File download
+## 2 - Fetch file metadata
+
+**Goal**
+
+> Expose a HTTP API to fetch all file metadata
+
+The path to call the HTTP API must be the following:
+
+```
+GET http://locahost:8080/file-storage/file
+```
+
+The output of the HTTP request must be the following:
+
+- HTTP Status: 200
+- Response body (JSON):
+
+```json
+[{
+  "fileId": 1,
+  "name": "poei.pdf"
+}, {
+  "fileId": 2,
+  "name": "foobar.doc"
+}]
+```
+
+**Instructions**
+
+- Create Java classes to fetch all uploaded file metadata
+- Update the controller to fetch the file metadata
+
+## 3 - File download
 
 **Goal**
 
@@ -130,7 +186,7 @@ The output of the HTTP request must be the following:
   - return a HTTP Status `404` if the file does not exist
   - :bulb: you can use the Spring annotation `@ResponseStatus` on an exception to return the corresponding HTTP status
 
-## 3 - Save file entities in database
+## 4 - Save file entities in database
 
 **Goal**
 
@@ -142,11 +198,11 @@ The output of the HTTP request must be the following:
 
 - Modify the `pom.xml` file to use the dependencies `spring-boot-starter-jdbc` and `postgresql`
   - :warning: the application is already configured to use the database `file_storage`, so you may have to create the database beforehand
-- Create a table that will contain the file entities
+- Create a SQL table that will contain the file entities
 - Create the Java DAO class that read and write lines in the database
 - Update the Java classes to store, update and fetch the file entities in database instead of in memory
 
-## 4 - Encrypt/Decrypt file content
+## 5 - Encrypt/Decrypt file content
 
 **Goal**
 
