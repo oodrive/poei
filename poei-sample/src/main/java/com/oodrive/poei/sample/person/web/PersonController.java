@@ -27,7 +27,7 @@ public class PersonController {
 	@PostMapping
 	public GreetingDTO greet(@RequestBody PersonDTO person) {
 		LOGGER.info("Greeting {}...", person.getName());
-		var message = greeter.greet(person.getName());
+		String message = greeter.greet(person.getName());
 		return new GreetingDTO(message);
 	}
 }

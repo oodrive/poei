@@ -5,4 +5,3 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/password_manager?application_name=password_manager
     username: postgres
-

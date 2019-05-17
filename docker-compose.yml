@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  sample:
+    build:
+      context: poei-sample
+    container_name: poei-sample
+    network_mode: host
+    environment:
+      server.port: 8080
+  file-storage:
+    build:
+      context: poei-file-storage
+    container_name: poei-file-storage
+    network_mode: host
+    environment:
+      server.port: 8081
+  password-manager:
+    build:     
+      context: poei-password-manager
+    container_name: poei-password-manager
+    network_mode: host
+    environment:
+      server.port: 8082
+  secured-box:
+    build:
+      context: poei-secured-box
+    container_name: poei-secured-box
+    network_mode: host
+    environment:
+      server.port: 8083
+

@@ -1,4 +1,4 @@
-FROM openjdk:11-slim
+FROM openjdk:8-slim
 
 COPY target/poei-sample.jar .
 

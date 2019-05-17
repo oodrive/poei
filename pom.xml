@@ -9,10 +9,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.oodrive.poei</groupId>
-	<artifactId>poei-file-storage</artifactId>
+	<artifactId>poei-password-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>poei-file-storage</name>
-	<description>File storage service</description>
+	<name>poei-password-manager</name>
+	<description>Password manager service</description>
+
+	<properties>
+		<java.version>11</java.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -41,7 +45,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>poei-file-storage</finalName>
+		<finalName>poei-password-manager</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

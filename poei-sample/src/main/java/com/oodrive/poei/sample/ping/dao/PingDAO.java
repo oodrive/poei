@@ -19,7 +19,7 @@ public class PingDAO {
 		jdbcTemplate.update(SQL_INSERT, LocalDateTime.now());
 	}
 
-	public int count() {
+	public Integer count() {
 		return jdbcTemplate.queryForObject(SQL_COUNT, Integer.class);
 	}
 }
