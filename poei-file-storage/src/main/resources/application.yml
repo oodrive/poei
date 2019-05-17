@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /file-storage
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/file_storage?application_name=file-storage
+    username: postgres
