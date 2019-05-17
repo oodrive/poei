@@ -184,7 +184,7 @@ The output of the HTTP request must be the following:
   - that fetch the file content from the path provided by the file entity
 - Update the controller to download the file
   - return a HTTP Status `404` if the file does not exist
-  - :bulb: you can use the Spring annotation `@ResponseStatus` on an exception to return the corresponding HTTP status
+  - :bulb: you can use the Spring annotation `@org.springframework.web.bind.annotation.ResponseStatus` on an exception to return the corresponding HTTP status
 
 ## 4 - Save file entities in database
 
@@ -219,16 +219,16 @@ The output of the HTTP request must be the following:
 
 - Create Java classes to:
   - generate an encryption key supported by `AES` (Advanced Encryption Standard) implementation
-    - you can use the Java class `SecretKey` for the encryption key
+    - you can use the Java class `javax.crypto.SecretKey` for the encryption key
     - the storage of the encryption key's password is up to you
       - directly in the code
       - in the database
-      - using Spring `@Value`
+      - using Spring `@org.springframework.beans.factory.annotation.Value`
     - :warning: `AES` only supports 16, 24 or 32 bytes blocks, so fill up the block if the length of the given password is not enough
-    - :bulb: SHA-256 hashes are also 32 bytes long, so you can hash your password to use it to create the `SecretKey`
+    - :bulb: SHA-256 hashes are also 32 bytes long, so you can hash your password to use it to create the `javax.crypto.SecretKey`
   - encrypt file content
-    - you can use the Java class `CipherOutputStream`
+    - you can use the Java class `javax.crypto.CipherOutputStream`
   - decrypt file content
-    - you can use the Java class `CipherInputStream`
+    - you can use the Java class `javax.crypto.CipherInputStream`
 - Update your code to include the encryption and decryption of file contents
 
