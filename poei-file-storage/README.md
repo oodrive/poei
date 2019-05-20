@@ -213,7 +213,7 @@ The output of the HTTP request must be the following:
 > The principle is to use an encryption key to convert a sensitive data into a non-readable data by employing
 > a two-way algorithm, i.e. the encryption and decryption are performed using the same encryption key.
 
-![symmetric encryption](symmetric_encryption.jpg)
+![symmetric encryption](symmetric_encryption.png)
 
 **Instructions**
 
