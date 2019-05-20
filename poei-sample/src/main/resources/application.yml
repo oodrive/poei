@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /sample
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sample?application_name=sample
+    username: postgres
