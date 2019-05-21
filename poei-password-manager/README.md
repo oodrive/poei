@@ -206,6 +206,8 @@ The output of the HTTP request must be the following:
 
 - Create the Java classes that hash a given `String` and return the hashed `String` in Base64 format
   - you will use the algorithm `SHA256` to hash
+    - :information_source: `SHA-256` is not the best hash algorithm for password as it is vulnerable to rainbow tables
+      attacks, but it is suitable for this exercise as it is easy to develop
   - :bulb: use the standard Java class `java.util.Base64` to encode the hashed byte array into a `String`
 - Update your code to save the password hashes in base64 format instead of plain password
 - Update password complexity computation code to compare the password hashes instead of the password values
