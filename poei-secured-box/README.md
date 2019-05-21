@@ -245,7 +245,7 @@ The output of the HTTP request must be the following:
 > 256 bits long, i.e. 32 bytes long. 
 >
 > The hashing technique will always result the same output for a given input, in other words, for a given password value,
-> its hash value will always be the same. So, it's also possible to check if a password has already been used or not.
+> its hash value will always be the same.
 > 
 > :warning: This approach is not the best way to create a secret key, but it's one of the easiest way to create one, enough for this exercise.
 
