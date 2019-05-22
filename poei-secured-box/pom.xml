@@ -14,10 +14,6 @@
 	<name>poei-secured-box</name>
 	<description>Secured box backend service</description>
 
-	<properties>
-		<java.version>11</java.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

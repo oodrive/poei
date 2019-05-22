@@ -14,10 +14,6 @@
 	<name>poei-password-manager</name>
 	<description>Password manager service</description>
 
-	<properties>
-		<java.version>11</java.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
