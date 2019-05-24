@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  front:
+    build: .
+    container_name: poei-front
+    ports:
+    - 4200:80
+    volumes:
+    - ./dist/poei-front:/usr/share/nginx/html:ro
+  web:
+    container_name: poei-web
+    image: nginx
+    ports:
+    - 80:80
+    volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    network_mode: host

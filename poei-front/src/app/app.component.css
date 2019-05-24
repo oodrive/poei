@@ -1,0 +1,29 @@
+.project {
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+app-service {
+  text-align: left;
+  margin: auto;
+  display: block;
+  width: 90%;
+  height: 85%;
+}
+#NW {
+  top: 0;
+  left: 0;
+}
+#NE {
+  top: 0;
+  left: 50%;
+}
+#SW {
+  top: 50%;
+  left: 0;
+}
+#SE {
+  top: 50%;
+  left: 50%;
+}

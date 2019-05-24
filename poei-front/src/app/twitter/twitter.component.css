@@ -1,0 +1,9 @@
+.badge {
+  float: right;
+}
+.card {
+  margin-bottom: 10px;
+}
+a.page-link {
+  cursor: pointer;
+}

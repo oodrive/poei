@@ -1,0 +1,43 @@
+<app-toast *ngIf="uploadError" [title]="'Error when uploading'" [input]="uploadError" [isError]="true"></app-toast>
+<app-toast *ngIf="uploadedFile" [title]="'Uploading SUCCESS'" [input]="successMessage" [isError]="false"></app-toast>
+
+<div class="container-fluid">
+  <h5>Upload</h5>
+  <div class="form-group">
+    <div class="custom-file">
+      <input class="custom-file-input" id="fileStorageFile" type="file" (change)="selectFile($event)" />
+      <label class="custom-file-label" for="fileStorageFile">{{fileName}}</label>
+    </div>
+  </div>
+  <div *ngIf="currentFileUpload" class="progress">
+    <br />
+    <div
+      class="progress-bar progress-bar-striped"
+      role="progressbar"
+      attr.aria-valuenow="{{ progress.percentage }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: progress.percentage + '%' }"
+  	  [ngClass]="{ 'bg-success': !uploadError, 'bg-danger': uploadError }"
+    >
+      {{ progress.percentage }}%
+    </div>
+  </div>
+  <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+</div>
+
+<hr />
+
+<app-toast *ngIf="downloadError" [title]="'Error when downloading'" [input]="downloadError" [isError]="true"></app-toast>
+
+<div class="container-fluid">
+  <h5>Download</h5>
+  <form #fDownload="ngForm" (ngSubmit)="download(fDownload)">
+    <div class="form-group">
+      <select class="form-control" name="fileId" [(ngModel)]="selectedFileId">
+        <option *ngFor="let file of files" [ngValue]="file.fileId">{{file.name}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!selectedFileId">Download</button>
+  </form>
+</div>

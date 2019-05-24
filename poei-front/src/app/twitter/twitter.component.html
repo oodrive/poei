@@ -1,0 +1,65 @@
+<app-toast *ngIf="tweetError" [title]="'Error when tweeting'" [input]="tweetError" [isError]="true"></app-toast>
+<app-toast *ngIf="createdTweet" [title]="'Tweet'" [input]="'Message successully tweeted'" [isError]="false"></app-toast>
+
+<div class="container-fluid">
+  <h5>Tweet</h5>
+  <form #fTweet="ngForm" (ngSubmit)="tweet(fTweet)">
+    <div class="form-row">
+      <div class="form-group col">
+        <label class="sr-only" for="login">Login</label>
+        <input class="form-control" type="text" placeholder="login" name="login" [(ngModel)]="createTweet.account.login" />
+      </div>
+      <div class="form-group col">
+        <label class="sr-only" for="password">Password</label>
+        <input class="form-control" type="password" placeholder="password" name="password" [(ngModel)]="createTweet.account.password" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <textarea class="form-control" placeholder="Message" name="message" [(ngModel)]="createTweet.message"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!fTweet.value.login">Tweet</button>
+  </form>
+</div>
+
+<hr />
+
+<app-toast *ngIf="getTweetsError" [title]="'Error when getting tweets'" [input]="getTweetsError" [isError]="true"></app-toast>
+
+<div class="container-fluid">
+  <h5>Message feed</h5>
+  <form #fGetTweets="ngForm" (ngSubmit)="getTweets(fGetTweets)">
+    <div class="form-group">
+      <select class="form-control" name="fileId" [(ngModel)]="selectedAccountId">
+        <option *ngFor="let account of accounts" [ngValue]="account.accountId">{{account.login}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!selectedAccountId">Get {{ nbTweets }} tweets</button>
+  </form>
+  <br />
+  <div *ngIf="tweets" class="tweets">
+    <div class="card" *ngFor="let tweet of tweets">
+      <div class="card-header">
+        {{ tweet.account.login }}&nbsp;<span class="badge badge-secondary">{{ tweet.dateTime }}</span>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ tweet.message }}</p>
+      </div>
+      <br />
+    </div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{disabled: page <= 0}">
+          <a class="page-link" (click)="previousTweets()">Previous</a>
+        </li>
+        <li class="page-item active">
+          <span class="page-link">{{ page + 1 }}</span>
+        </li>
+        <li class="page-item">
+          <a class="page-link" (click)="nextTweets()">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

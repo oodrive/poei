@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding:1em;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  background-color: #f2f7fb !important;
+  font-family: "Open Sans",sans-serif !important;
+}
+
+form {
+  padding: 0 !important;
+}

@@ -1,0 +1,57 @@
+.service {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(43,43,43,0.1),0 11px 6px -7px rgba(43,43,43,0.1);
+  box-shadow: 0 0 5px 0 rgba(43,43,43,0.1),0 11px 6px -7px rgba(43,43,43,0.1);
+}
+.service-title {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 20px;
+  position: relative;
+}
+.service-title h5 {
+  margin-bottom: 0;
+  color: lightseagreen;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 1.1;
+  position: relative;
+}
+.service-title h5::after {
+  content: "";
+  background-color: lightgrey;
+  width: 60px;
+  height: 1px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+.service-content {
+  padding: 20px;
+  height: 80%;
+  word-wrap: break-word;
+  overflow-y: auto;
+}
+.unavailable {
+  background-image: url("/assets/unable_to_connect.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-color: lightgrey;
+}
+.owners {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.names {
+  cursor: pointer;
+}
+.unavailable .service-title h5, .unavailable .service-content h2 {
+  color: tomato;
+}
+.unavailable .service-title h5::after {
+  background-color: white;
+}

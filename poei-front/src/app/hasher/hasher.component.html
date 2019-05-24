@@ -1,0 +1,21 @@
+<div class="flex-container">
+  <div class="flex-item">
+    <form #fHash="ngForm" (ngSubmit)="generateHash(fHash)">
+      <label>
+        <input type="text" placeholder="Text to hash" name="text" [(ngModel)]="text" />
+      </label>
+      <select name="hashAlgorithm" [(ngModel)]="hashAlgorithm">
+        <option value="SHA256">SHA256</option>
+        <option value="SHA512">SHA512</option>
+      </select>
+      <button type="submit">Hash</button>
+    </form>
+  </div>
+  <div class="flex-item">
+    <div *ngIf="hash">
+      <h1>{{hash.value}}</h1>
+      <h1>{{hash.alreadyUsed}}</h1>
+    </div>
+    <div *ngIf="hashError" class="error">{{hashError.error|json}}</div>
+  </div>
+</div>

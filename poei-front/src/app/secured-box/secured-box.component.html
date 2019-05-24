@@ -1,0 +1,53 @@
+<app-toast *ngIf="createError" [title]="'Error when creating secret'" [input]="createError" [isError]="true"></app-toast>
+<app-toast *ngIf="createSuccessMessage" [title]="'Secret creation'" [input]="createSuccessMessage" [isError]="false"></app-toast>
+
+<div class="container-fluid">
+  <h5>Create secret</h5>
+  <form #fCreate="ngForm" (ngSubmit)="create(fCreate)">
+    <div class="form-row">
+      <div class="col">
+        <label for="key" class="sr-only">Key</label>
+        <input class="form-control" required type="text" placeholder="Key" name="key" [(ngModel)]="createSecret.key" />
+      </div>
+      <div class="col">
+        <label for="value" class="sr-only">Value</label>
+        <input class="form-control" required type="text" placeholder="Value" name="value" [(ngModel)]="createSecret.value" />
+      </div>
+      <div class="col">
+        <label for="key" class="sr-only">Password</label>
+        <input class="form-control" required type="password" placeholder="Password" name="password" [(ngModel)]="createSecret.password" />
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-primary" [disabled]="!createSecret.key" type="submit">Create</button>
+  </form>
+</div>
+
+<hr />
+
+<app-toast *ngIf="getError" [title]="'Error when getting secret'" [input]="getError" [isError]="true"></app-toast>
+
+<div class="container-fluid">
+  <h5>Get secret</h5>
+  <form #fGet="ngForm" (ngSubmit)="get(fGet)">
+    <div class="form-row">
+      <div class="col">
+        <label for="key" class="sr-only">Key</label>
+        <input class="form-control" required type="text" placeholder="Key" name="key" ngModel />
+      </div>
+      <div class="col">
+        <label for="password" class="sr-only">Password</label>
+        <input class="form-control" required type="password" placeholder="Password" name="password" ngModel />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-2">
+        <button class="btn btn-primary" [disabled]="!fGet.value.key" type="submit">Get</button>
+      </div>
+      <div class="col-sm-10">
+        <h4 class="text-success">{{ secretValue }}</h4>
+      </div>
+    </div>
+  </form>
+</div>

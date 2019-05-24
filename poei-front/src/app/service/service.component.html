@@ -1,0 +1,39 @@
+<div class="owners">
+  <div class="row" *ngIf="!editNames" (click)="editNames = true">
+    <div class="col-auto my-1">
+        <i class="fas fa-users"></i>
+    </div>
+    <div class="col-auto my-1 names">
+        {{ service.owners }}
+    </div>
+  </div>
+  <form *ngIf="editNames" #f="ngForm" class="names" (ngSubmit)="changeNames(f)">
+    <div class="form-row">
+      <div class="col-auto my-1">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="col my-1">
+        <input type="text" class="form-control" name="owners" [(ngModel)]="service.owners" />
+      </div>
+      <div class="col-auto my-1">
+        <button class="btn btn-outline-dark" type="submit">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="service" [ngClass]="{ unavailable: !service.available }">
+  <div class="service-title">
+    <h5>
+      <i [ngClass]="service.icon"></i>&nbsp;{{ service.name }}
+    </h5>
+  </div>
+  <div *ngIf="service.available; else unavailableService" class="service-content">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<ng-template #unavailableService>
+  <div class="service-content">
+    <h2>Unable to connect to the service.</h2>
+  </div>
+</ng-template>

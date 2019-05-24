@@ -1,0 +1,20 @@
+<div class="project" id="NW">
+  <app-service [service]="services.sample" *ngIf="services.sample.enabled">
+    <app-sample></app-sample>
+  </app-service>
+</div>
+<div class="project" id="NE">
+  <app-service [service]="services.fileStorage" *ngIf="services.fileStorage.enabled">
+    <app-file-storage></app-file-storage>
+  </app-service>
+</div>
+<div class="project" id="SW">
+  <app-service [service]="services.password" *ngIf="services.password.enabled">
+    <app-password></app-password>
+  </app-service>
+</div>
+<div class="project" id="SE">
+  <app-service [service]="services.securedBox" *ngIf="services.securedBox.enabled">
+    <app-secured-box></app-secured-box>
+  </app-service>
+</div>
